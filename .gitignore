@@ -1,9 +1,6 @@
 # data folder
 **/input
 
-# output folder (if you want to link it to overleaf)
-**/output
-
 # macos file
 .DS_Store
 
