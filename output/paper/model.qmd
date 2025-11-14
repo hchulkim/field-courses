@@ -1,0 +1,150 @@
+---
+title: "Derivation of sectoral gravity model"
+author: "Hyoungchul Kim"
+date: today
+execute:
+  echo: false
+format: 
+  pdf:
+    pdf-engine: pdflatex
+    keep-tex: true
+    fig-pos: H
+    include-in-header: 
+       text: |
+         \usepackage{fvextra}
+         \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}
+         \DefineVerbatimEnvironment{OutputCode}{Verbatim}{breaklines,commandchars=\\\{\}}
+         \usepackage{booktabs}
+         \usepackage{longtable}
+         \usepackage{array}
+         \usepackage{multirow}
+         \usepackage{wrapfig}
+         \usepackage{float}
+         \usepackage{colortbl}
+         \usepackage{pdflscape}
+         \usepackage{tabu}
+         \usepackage{threeparttable}
+         \usepackage{threeparttablex}
+         \usepackage[normalem]{ulem}
+         \usepackage{makecell}
+         \usepackage{xcolor} 
+bibliography: references.bib
+---
+
+## Solving within a sector 
+
+- Just to make this simple, I will supress the sector index $l$ for now.
+
+I solve the following maximization problem:
+
+$$
+  \max_{c_{ij}} \left\{ \sum_i^N \left( \beta_i \right)^{\frac{1-\sigma}{\sigma}} \left( c_{ij} \right)^{\frac{\sigma - 1}{\sigma}} \right\}^{\frac{\sigma}{\sigma - 1}}
+$$
+
+subject to: 
+
+$$
+  \sum_{i=1}^N p_{ij} c_{ij} \leq Y_j.
+$$
+
+Solving the lagrangian gives the following first order conditions:
+
+$$
+  \frac{\partial L}{\partial c_{ij}} = \left( \beta_i \right)^{\frac{1-\sigma}{\sigma}} \left( c_{ij} \right)^{\frac{\sigma - 1}{\sigma} - 1} - \lambda p_{ij} = 0.
+$$
+
+Now divide this by $i'$'s FOC, we get:
+
+$$
+  \frac{p_{ij}}{p_{i'j}} = \left( \frac{\beta_i}{\beta_{i'}} \right)^{\frac{1-\sigma}{\sigma}} \cdot \left( \frac{c_{ij}}{c_{i'j}} \right)^{- \frac{1}{\sigma}}.
+$$
+
+I can then rearrange this to get the expresson for $c_{i'j}$:
+
+$$
+  c_{i'j} = \left( \frac{\beta_{i}}{\beta_{i'}} \right)^{\sigma - 1} \left( \frac{p_{ij}}{p_{i'j}} \right)^{\sigma} \cdot c_{ij}.
+$$
+
+Now I can substitute this back into the budget constraint to get the expression for $c_{ij}$:
+
+$$
+  \sum_{i=1}^N p_{ij} \left( \left( \frac{\beta_{i}}{\beta_{i'}} \right)^{\sigma - 1} \left( \frac{p_{ij}}{p_{i'j}} \right)^{\sigma} \cdot c_{ij} \right) = Y_j.
+$$
+
+This then becomes:
+
+$$
+  c_{ij} = \left( p_{ij} \right)^{-\sigma} \cdot \left( \frac{\beta_i}{P_j} \right)^{1-\sigma} \cdot Y_j
+$$
+
+where $P_j$ is the price index: $P_j = \left[ \sum_{i=1}^N \left( \beta_i p_{ij} \right)^{1-\sigma} \right]^{\frac{1}{1-\sigma}}$.
+
+Multiplying it by $p_{ij}$ will give us the nominal demand $X_{ij}$:
+
+$$
+  X_{ij} = p_{ij} \cdot c_{ij} = \left( p_{ij} \right)^{1-\sigma} \cdot \left( \frac{\beta_i}{P_j} \right)^{1-\sigma} \cdot Y_j.
+$$
+
+Now I can substitute $p_{ij} = p_i t_{ij} (1+\tau_{ij})(1-z_i)(1-(1- \phi_i)s_i)$:[^1]
+
+$$
+  X_{ij} = \left[ p_i t_{ij} (1+\tau_{ij})(1-z_i)(1-(1- \phi_i)s_i) \right]^{1-\sigma} \cdot \left( \frac{\beta_i}{P_j} \right)^{1-\sigma} \cdot Y_j.
+$$
+
+[^1]: Remember that substitution would have also happened for the price index.
+
+Now I impose market clearing condition $\sum_{j=1}^N X_{ij} = Y_{i}$ and substitute $X_{ij}$ with the expression above:
+
+$$
+  Y_i = \sum_{j=1}^N \left[ p_i t_{ij} (1+\tau_{ij})(1-z_i)(1-(1- \phi_i)s_i) \right]^{1-\sigma} \cdot \left( \frac{\beta_i}{P_j} \right)^{1-\sigma} \cdot Y_j.
+$$
+
+From now on, let's denote $Y_j$ as $E_j$ (expenditure equals to income) to avoid confusion. If I divide both sides by the total sectoral income $Y$ I get the following expression:
+
+$$
+  \frac{Y_i}{Y} = \sum_{j=1}^N \left[ p_i t_{ij} (1+\tau_{ij})(1-z_i)(1-(1- \phi_i)s_i) \right]^{1-\sigma} \cdot \left( \frac{\beta_i}{P_j} \right)^{1-\sigma} \cdot \frac{E_j}{Y}.
+$$
+
+Now I can define $\Pi_i^{1-\sigma} = \sum_{j}\left( \frac{ t_{ij} ( 1+ \tau_{ij})}{P_j} \right)^{1-\sigma} \cdot \frac{E_j}{Y}$. Then the expression above becomes:
+
+$$
+  \frac{Y_i}{Y} = \left( \beta_i p_i (1-z_i)(1-(1- \phi_i)s_i) \Pi_i  \right)^{1-\sigma}, \forall i.  
+$$
+
+
+Solve for $\left( \beta_i p_i (1-z_i)(1-(1- \phi_i)s_i)\right)^{1-\sigma}$:
+
+$$
+  \left( \beta_i p_i (1-z_i)(1-(1- \phi_i)s_i)\right)^{1-\sigma} = \frac{Y_i / Y}{ \Pi_i^{1-\sigma}}.
+$$
+
+Now put substitute the LHS into the price index expression:
+
+$$
+  P_j = \left[ \sum_{i=1}^N \left( \beta_i p_i t_{ij} (1+ \tau_{ij}) (1-z_i)(1-(1- \phi_i)s_i) \right)^{1-\sigma} \right]^{\frac{1}{1-\sigma}}.
+$$
+
+I can then gets inward multilateral resistance terms:
+
+$$
+  P_j^{1-\sigma} = \sum_i \left( \frac{t_{ij} (1 + \tau_{ij})}{\Pi_i} \right)^{1-\sigma} \cdot \frac{Y_i}{Y}.
+$$
+
+Lastly, I add the income and expenditure definitions and market clearing conditions. For this case, I add back the sector index $l$:
+
+$$
+  E_j^l = \alpha_j^l Y_j = \alpha_j^l \sum_l Y_j^l, 
+$$
+
+$$
+  p_j^l = \frac{\left( Y_j^l / Y^l \right)^{\frac{1}{1-\sigma}}}{\beta_j^l (1-z_j^l)(1-(1- \phi_j^l)s_j^l) \Pi_j^l}. 
+$$
+
+Then done! I have derived the sectoral gravity model.
+
+
+
+## References
+
+<!-- ::: {#refs}
+::: -->
