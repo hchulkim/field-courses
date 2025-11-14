@@ -2,7 +2,7 @@
 **/input
 
 # output folder (if you want to link it to overleaf)
-# **/output
+**/output
 
 # macos file
 .DS_Store
