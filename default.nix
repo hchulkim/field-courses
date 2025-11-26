@@ -21,7 +21,8 @@
 #  > jl_pkgs = c("DataFrames",
 #  > "CSV",
 #  > "LinearAlgebra",
-#  > "Statistics")),
+#  > "Statistics",
+#  > "SparseArrays")),
 #  > ide = "none",
 #  > project_path = path_default_nix,
 #  > overwrite = TRUE,
@@ -55,6 +56,7 @@ let
       "CSV"
       "DataFrames"
       "LinearAlgebra"
+      "SparseArrays"
       "Statistics"
   ];
   

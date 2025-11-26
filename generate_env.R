@@ -10,7 +10,7 @@ rix(date = "2025-11-10",
     git_pkgs = NULL,
     jl_conf = list(
 		   jl_version = "1.11",
-		   jl_pkgs = c("DataFrames", "CSV", "LinearAlgebra", "Statistics")
+		   jl_pkgs = c("DataFrames", "CSV", "LinearAlgebra", "Statistics", "SparseArrays")
 		   ),
     ide = "none",
     project_path = path_default_nix,
