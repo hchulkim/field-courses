@@ -1,4 +1,5 @@
 % Options for packages loaded elsewhere
+% Options for packages loaded elsewhere
 \PassOptionsToPackage{unicode}{hyperref}
 \PassOptionsToPackage{hyphens}{url}
 \PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
@@ -7,21 +8,22 @@
   letterpaper,
   DIV=11,
   numbers=noendperiod]{scrartcl}
-
+\usepackage{xcolor}
 \usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
 \usepackage{iftex}
 \ifPDFTeX
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
   \usepackage{textcomp} % provide euro and other symbols
 \else % if luatex or xetex
-  \usepackage{unicode-math}
+  \usepackage{unicode-math} % this also loads fontspec
   \defaultfontfeatures{Scale=MatchLowercase}
   \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
 \fi
 \usepackage{lmodern}
-\ifPDFTeX\else  
-    % xetex/luatex font selection
+\ifPDFTeX\else
+  % xetex/luatex font selection
 \fi
 % Use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
@@ -39,9 +41,6 @@
 }{% if KOMA class
   \KOMAoptions{parskip=half}}
 \makeatother
-\usepackage{xcolor}
-\setlength{\emergencystretch}{3em} % prevent overfull lines
-\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
 % Make \paragraph and \subparagraph free-standing
 \makeatletter
 \ifx\paragraph\undefined\else
@@ -67,8 +66,7 @@
 \makeatother
 
 
-\providecommand{\tightlist}{%
-  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}\usepackage{longtable,booktabs,array}
+\usepackage{longtable,booktabs,array}
 \usepackage{calc} % for calculating minipage widths
 % Correct order of tables after \paragraph or \subparagraph
 \usepackage{etoolbox}
@@ -93,6 +91,20 @@
 % Set default figure placement to htbp
 \def\fps@figure{htbp}
 \makeatother
+
+
+
+
+
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+
+
+ 
+
 
 \usepackage{fvextra}
 \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}
@@ -153,11 +165,9 @@
 \@ifpackageloaded{caption}{}{\usepackage{caption}}
 \@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
 \makeatother
-
 \usepackage{bookmark}
-
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
-\urlstyle{same} % disable monospaced font for URLs
+\urlstyle{same}
 \hypersetup{
   pdftitle={Derivation of sectoral gravity model},
   pdfauthor={Hyoungchul Kim},
@@ -171,11 +181,13 @@
 
 \title{Derivation of sectoral gravity model}
 \author{Hyoungchul Kim}
-\date{2025-11-14}
-
+\date{2025-11-26}
 \begin{document}
 \maketitle
 
+
+\section{Part 1 (Theory): Derivation of sectoral gravity
+model}\label{part-1-theory-derivation-of-sectoral-gravity-model}
 
 \subsection{Solving within a sector}\label{solving-within-a-sector}
 
@@ -276,13 +288,13 @@ Solve for
   \left( \beta_i p_i (1-z_i)(1-(1- \phi_i)s_i)\right)^{1-\sigma} = \frac{Y_i / Y}{ \Pi_i^{1-\sigma}}.
 \]
 
-Now put substitute the LHS into the price index expression:
+Now put the LHS into the price index expression:
 
 \[
   P_j = \left[ \sum_{i=1}^N \left( \beta_i p_i t_{ij} (1+ \tau_{ij}) (1-z_i)(1-(1- \phi_i)s_i) \right)^{1-\sigma} \right]^{\frac{1}{1-\sigma}}.
 \]
 
-I can then gets inward multilateral resistance terms:
+I can then get inward multilateral resistance terms:
 
 \[
   P_j^{1-\sigma} = \sum_i \left( \frac{t_{ij} (1 + \tau_{ij})}{\Pi_i} \right)^{1-\sigma} \cdot \frac{Y_i}{Y}.
@@ -300,6 +312,93 @@ conditions. For this case, I add back the sector index \(l\):
 \]
 
 Then done! I have derived the sectoral gravity model.
+
+\section{Part 2 (Empirical): Estimating
+gravity}\label{part-2-empirical-estimating-gravity}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  I have run the code from the start to line 583. I will personally talk
+  to Yoto if I have any questions. I will also separately submit a log
+  file of the code execution.
+\item
+  I filled the missing parts of the code. Table below shows the results.
+  For first two columns, you can see that the coefficient estimates are
+  positive for both RTA and WTO indicators. This is natural as the trade
+  agreement would have led to lower trade costs. For second column, you
+  can also see that the coefficient estimate becomes smaller for RTA
+  once you add the WTO indicator. This is probably because there was a
+  omitted variable bias in the first column. As WTO indicator is
+  correlated with RTA indicator, adding it will give us a more unbiased
+  estimate. Interesting thing to note is that these coefficient
+  estimates all become small in magnitude and insignificant once we do
+  not account for domestic trade flows. This is probably related to the
+  missing WTO effects puzzle we learned in class. In order to accurately
+  estimate the WTO effects, we need to account for domestic trade flows
+  (following structural gravity model). For example there might be some
+  factors like trade-diversion effects of polices that not accounted for
+  in the third column.
+\end{enumerate}
+
+Next tables show the results for the NAFTA effect. Overall, you can see
+that the coefficients are all positive and significant. Advantage of
+creating separate dummy for different pair of NAFTA countries is that it
+gives us heterogeneous effects across different pairs of countries.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  First, I ran the ETWFE using jwdid estimator. The estimate you get
+  from this regression is about -0.816 (se 0.114) for the sanction. This
+  shows that the impact of sanctions on trade flow is very large and
+  negative. I also plotted the leading, phasing in, and lift effect of
+  the sanctions. I plot the event study plots below.
+\end{enumerate}
+
+In the plot, you can see that there are already some downward trend in
+the estimates before the sanctions. This might indicate some
+anticipation effects of the sanctions. After the sanction, the estimates
+fall sharply and then start to recover. This is consistent with the idea
+that the sanctions are effective in reducing trade flow.
+
+\section{Part 3 (Empirical): GE
+gravity}\label{part-3-empirical-ge-gravity}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  I have run the code from the start to finish. I will personally talk
+  to Yoto if I have any questions. I will also separately submit a log
+  file of the code execution.
+\item
+  Optional.
+\end{enumerate}
+
+3 (a). If we add Canada US border, you can see that the coefficient
+estimate is positive. Thus relative to the baseline border, this
+indicates that the border effect for Canada and US is thinner than other
+borders. But still, compared to general border effect, this is still not
+very large. Thus, while the border between Canada and US is thinner than
+other borders, the friction still matters.
+
+3 (b).
+
+3 (c).
+
+3 (d).
+
+4 (a).
+
+4 (b).
+
+4 (c).
+
+4 (d).
+
+4 (e).
 
 \subsection{References}\label{references}
 
