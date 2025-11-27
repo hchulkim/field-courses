@@ -151,9 +151,21 @@ Then done! I have derived the sectoral gravity model.
 
 2. I filled the missing parts of the code. Table below shows the results. For first two columns, you can see that the coefficient estimates are positive for both RTA and WTO indicators. This is natural as the trade agreement would have led to lower trade costs. For second column, you can also see that the coefficient estimate becomes smaller for RTA once you add the WTO indicator. This is probably because there was a omitted variable bias in the first column. As WTO indicator is correlated with RTA indicator, adding it will give us a more unbiased estimate. Interesting thing to note is that these coefficient estimates all become small in magnitude and insignificant once we do not account for domestic trade flows. This is probably related to the missing WTO effects puzzle we learned in class. In order to accurately estimate the WTO effects, we need to account for domestic trade flows (following structural gravity model). For example there might be some factors like trade-diversion effects of polices that not accounted for in the third column.
 
+\begin{table}[!ht]
+\centering
+\input{../tables/tableQ2.tex}
+\end{table}
+
 Next tables show the results for the NAFTA effect. Overall, you can see that the coefficients are all positive and significant. Advantage of creating separate dummy for different pair of NAFTA countries is that it gives us heterogeneous effects across different pairs of countries.
 
+\begin{table}[!ht]
+\centering
+\input{../tables/tableQ2_2.tex}
+\end{table}
+
 3. First, I ran the ETWFE using jwdid estimator. The estimate you get from this regression is about -0.816 (se 0.114) for the sanction. This shows that the impact of sanctions on trade flow is very large and negative. I also plotted the leading, phasing in, and lift effect of the sanctions. I plot the event study plots below.
+
+![Event study plots for the sanctions](../figures/sanctions_eventstudy.png)
 
 In the plot, you can see that there are already some downward trend in the estimates before the sanctions. This might indicate some anticipation effects of the sanctions. After the sanction, the estimates fall sharply and then start to recover. This is consistent with the idea that the sanctions are effective in reducing trade flow.
 
@@ -165,21 +177,67 @@ In the plot, you can see that there are already some downward trend in the estim
 
 3 (a). If we add Canada US border, you can see that the coefficient estimate is positive. Thus relative to the baseline border, this indicates that the border effect for Canada and US is thinner than other borders. But still, compared to general border effect, this is still not very large. Thus, while the border between Canada and US is thinner than other borders, the friction still matters.
 
+\begin{table}[!ht]
+\centering
+\input{../tables/tableQ3_a.tex}
+\end{table}
+
 3 (b). In the case of symmetric removal of the border, you can see the gain from trade. This is especially large for Canada. While USA also has such gain, it is relatively smaller and consumer price actually increases.
 
 3 (c). In asymmetric removal, Canada's GDP rise becomes much smaller. It also seem that gain from trade is more concentrated in producer side.
 
-4 (a). Suppose Trump impose 60% tariff on all imports from China.
+Country | Cases | Change in Exports | Change in producer price | Change in consumer price | Change in GDP
+--- | --- | --- | --- | --- | ---
+Canada | Symmetric | 98.18 | 31.13 | -21.74 | 67.56 
+USA | Symmetric | 60.12 | 2.60 | 0.54 | 2.05
+Mexico | Symmetric | -1.05 | 0.52 | 1.06 | -0.53
+Canada | Asymmetric | 73.27 | 30.73 | 6.55 | 22.69
+USA | Asymmetric | 26.81 | -1.37 | -2.29 | 0.94
 
-4 (b).
+4 (a). Suppose Trump impose 60% tariff on all imports from China. The change in welfare is as follows:
 
-4 (c).
+Country | Change in Exports | Change in producer price | Change in consumer price | Change in GDP
+--- | --- | --- | --- | --- | ---
+USA | -4.83 | 1.27 | 1.51 | -0.23
+China | -6.19 | -1.88 | -1.74 | -0.14
+TZA | 0.06 | 0.03 | -0.31 | 0.34 
+NPL | -0.35 | -0.30 | -0.81 | 0.52
 
-4 (d).
+You can see that in terms of overall welfare, USA actually loses from the tariff. China also loses from the tariff, though not as much as USA. Tanzania and Nepal gain from the tariff. Perhaps it is due to change in exports and trade diversion effects of the tariff.
 
-4 (e).
+4 (b). Now suppose China retaliates. Then the change in welfare is as follows:
 
-## References
+Country | Change in Exports | Change in producer price | Change in consumer price | Change in GDP
+--- | --- | --- | --- | --- | ---
+USA | -7.51 | 0.99 | 1.28 | -0.29
+China | -7.11 | -1.58 | -1.31 | -0.27
+TZA | 0.06 | 0.03 | -0.26 | 0.29
+NPL | -0.27 | -0.23 | -0.67 | 0.44
 
-<!-- ::: {#refs}
-::: -->
+In this case, USA and China both lose more due to the retaliation. Tanzania and Nepal still gain from the tariff, but the gain is smaller.
+
+4 (c). Now suppose the world taxes US. Then the change in welfare is as follows:
+
+Country | Change in Exports | Change in producer price | Change in consumer price | Change in GDP
+--- | --- | --- | --- | --- | ---
+USA |  | 97.36 | -67.58 | -99.98 | 148,479.80
+China | 49.08 | -64.05 | -99.98 | 156,450.20
+TZA | -99.00 | 36.16 | -99.76 | 58,922.45
+NPL | -99.20 | 31.02 | -51.02 | 168.53
+
+As this is situation where every world is taxing US, result gets bit confusing. But interesting it seems to lead to overall welfare gain for the world. 
+
+4 (d). Finally, let's do the domestic tariff case. Then the change in welfare is as follows:
+
+Country | Change in Exports | Change in producer price | Change in consumer price | Change in GDP
+--- | --- | --- | --- | --- | ---
+USA | -28.38 | -1.47 | 9.19 | -9.76
+China | -6.16 | -1.51 | -1.25 | -0.27
+TZA | -0.13 | -0.16 | 0.17 | -0.33
+NPL | -0.34 | -0.39 | -0.41 | 0.02
+
+You can see that many countries suffer from the domestic tariff. This is because the domestic tariff is a tax on domestic consumers and this will also propagate to other countries through trade diversion effects. Interestingly, some country like Nepal actually gain from the US's domestic tariff.
+
+4 (e). For 60% tariff on China and possible retaliation from China, the estimates from the policy brief is pretty close to the results I got. For example, they expect about -0.19% to -0.12% change in real GDP which is pretty close to my number of -0.23% (though my code expects bigger loss for USA). For retaliation, policy brief expected about -0.43% to -0.21% while my code expects about -0.29% which is within the range. Thus the model seems to pretty good job in predicting the welfare effects of the tariff (though there are some differences in the magnitude). On the other hand, the case for universal tariff on US seems to be a bit off.
+
+5. Optional.
