@@ -1,5 +1,5 @@
 ---
-title: "Derivation of sectoral gravity model"
+title: "Gravity problem set"
 author: "Hyoungchul Kim"
 date: today
 execute:
@@ -31,11 +31,12 @@ format:
 bibliography: references.bib
 ---
 
+
 # Part 1 (Theory): Derivation of sectoral gravity model
 
 ## Solving within a sector 
 
-- Just to make this simple, I will supress the sector index $l$ for now.
+- Just to make this simple, I will suppress the sector index $l$ for now.
 
 I solve the following maximization problem:
 
@@ -55,13 +56,13 @@ $$
   \frac{\partial L}{\partial c_{ij}} = \left( \beta_i \right)^{\frac{1-\sigma}{\sigma}} \left( c_{ij} \right)^{\frac{\sigma - 1}{\sigma} - 1} - \lambda p_{ij} = 0.
 $$
 
-Now divide this by $i'$'s FOC, we get:
+Now, dividing this by $i'$'s FOC, we get:
 
 $$
   \frac{p_{ij}}{p_{i'j}} = \left( \frac{\beta_i}{\beta_{i'}} \right)^{\frac{1-\sigma}{\sigma}} \cdot \left( \frac{c_{ij}}{c_{i'j}} \right)^{- \frac{1}{\sigma}}.
 $$
 
-I can then rearrange this to get the expresson for $c_{i'j}$:
+I can then rearrange this to get the expression for $c_{i'j}$:
 
 $$
   c_{i'j} = \left( \frac{\beta_{i}}{\beta_{i'}} \right)^{\sigma - 1} \left( \frac{p_{ij}}{p_{i'j}} \right)^{\sigma} \cdot c_{ij}.
@@ -95,13 +96,13 @@ $$
 
 [^1]: Remember that substitution would have also happened for the price index.
 
-Now I impose market clearing condition $\sum_{j=1}^N X_{ij} = Y_{i}$ and substitute $X_{ij}$ with the expression above:
+Now I impose the market clearing condition $\sum_{j=1}^N X_{ij} = Y_{i}$ and substitute $X_{ij}$ with the expression above:
 
 $$
   Y_i = \sum_{j=1}^N \left[ p_i t_{ij} (1+\tau_{ij})(1-z_i)(1-(1- \phi_i)s_i) \right]^{1-\sigma} \cdot \left( \frac{\beta_i}{P_j} \right)^{1-\sigma} \cdot Y_j.
 $$
 
-From now on, let's denote $Y_j$ as $E_j$ (expenditure equals to income) to avoid confusion. If I divide both sides by the total sectoral income $Y$ I get the following expression:
+From now on, let's denote $Y_j$ as $E_j$ (expenditure equals income) to avoid confusion. If I divide both sides by the total sectoral income $Y$ I get the following expression:
 
 $$
   \frac{Y_i}{Y} = \sum_{j=1}^N \left[ p_i t_{ij} (1+\tau_{ij})(1-z_i)(1-(1- \phi_i)s_i) \right]^{1-\sigma} \cdot \left( \frac{\beta_i}{P_j} \right)^{1-\sigma} \cdot \frac{E_j}{Y}.
@@ -114,13 +115,13 @@ $$
 $$
 
 
-Solve for $\left( \beta_i p_i (1-z_i)(1-(1- \phi_i)s_i)\right)^{1-\sigma}$:
+Solving for $\left( \beta_i p_i (1-z_i)(1-(1- \phi_i)s_i)\right)^{1-\sigma}$:
 
 $$
   \left( \beta_i p_i (1-z_i)(1-(1- \phi_i)s_i)\right)^{1-\sigma} = \frac{Y_i / Y}{ \Pi_i^{1-\sigma}}.
 $$
 
-Now put the LHS into the price index expression:
+Now, putting the LHS into the price index expression:
 
 $$
   P_j = \left[ \sum_{i=1}^N \left( \beta_i p_i t_{ij} (1+ \tau_{ij}) (1-z_i)(1-(1- \phi_i)s_i) \right)^{1-\sigma} \right]^{\frac{1}{1-\sigma}}.
@@ -147,44 +148,46 @@ Then done! I have derived the sectoral gravity model.
 
 # Part 2 (Empirical): Estimating gravity
 
-1. I have run the code from the start to line 583. I will personally talk to Yoto if I have any questions. I will also separately submit a log file of the code execution.
+1. I have run the code from the start to line 583. I will personally talk to Yoto if I have any questions. I will also separately submit my code script.
 
-2. I filled the missing parts of the code. Table below shows the results. For first two columns, you can see that the coefficient estimates are positive for both RTA and WTO indicators. This is natural as the trade agreement would have led to lower trade costs. For second column, you can also see that the coefficient estimate becomes smaller for RTA once you add the WTO indicator. This is probably because there was a omitted variable bias in the first column. As WTO indicator is correlated with RTA indicator, adding it will give us a more unbiased estimate. Interesting thing to note is that these coefficient estimates all become small in magnitude and insignificant once we do not account for domestic trade flows. This is probably related to the missing WTO effects puzzle we learned in class. In order to accurately estimate the WTO effects, we need to account for domestic trade flows (following structural gravity model). For example there might be some factors like trade-diversion effects of polices that not accounted for in the third column.
+2. I filled the missing parts of the code. The table below shows the results. For the first two columns, you can see that the coefficient estimates are positive for both RTA and WTO indicators. This is natural as the trade agreement would have led to lower trade costs. For the second column, you can also see that the coefficient estimate becomes smaller for RTA once you add the WTO indicator. This is probably because there was an omitted variable bias in the first column. As the WTO indicator is correlated with the RTA indicator, adding it will give us a more unbiased estimate. An interesting thing to note is that these coefficient estimates all become small in magnitude and insignificant once we do not account for domestic trade flows. This is probably related to the missing WTO effects puzzle we learned in class. In order to accurately estimate the WTO effects, we need to account for domestic trade flows (following the structural gravity model). For example, there might be some factors like trade-diversion effects of policies that are not accounted for in the third column.
 
 \begin{table}[!ht]
 \centering
 \input{../tables/tableQ2.tex}
 \end{table}
 
-Next tables show the results for the NAFTA effect. Overall, you can see that the coefficients are all positive and significant. Advantage of creating separate dummy for different pair of NAFTA countries is that it gives us heterogeneous effects across different pairs of countries.
+The next tables show the results for the NAFTA effect. Overall, you can see that the coefficients are all positive and significant. The advantage of creating separate dummies for different pairs of NAFTA countries is that it gives us heterogeneous effects across different pairs of countries.
 
 \begin{table}[!ht]
 \centering
 \input{../tables/tableQ2_2.tex}
 \end{table}
 
-3. First, I ran the ETWFE using jwdid estimator. The estimate you get from this regression is about -0.816 (se 0.114) for the sanction. This shows that the impact of sanctions on trade flow is very large and negative. I also plotted the leading, phasing in, and lift effect of the sanctions. I plot the event study plots below.
+3. First, I ran the ETWFE using the jwdid estimator. The estimate you get from this regression is about -0.816 (se 0.114) for the sanction. This shows that the impact of sanctions on trade flows is very large and negative. I also plotted the leading, phasing in, and lift effects of the sanctions. I plot the event study plots below.
+
+\clearpage
 
 ![Event study plots for the sanctions](../figures/sanctions_eventstudy.png)
 
-In the plot, you can see that there are already some downward trend in the estimates before the sanctions. This might indicate some anticipation effects of the sanctions. After the sanction, the estimates fall sharply and then start to recover. This is consistent with the idea that the sanctions are effective in reducing trade flow.
+In the plot, you can see that there is already some downward trend in the estimates before the sanctions. This might indicate some anticipation effects of the sanctions. After the sanctions, the estimates fall sharply and then start to recover. This is consistent with the idea that the sanctions are effective in reducing trade flows.
 
 # Part 3 (Empirical): GE gravity 
 
-1. I have run the code from the start to finish. I will personally talk to Yoto if I have any questions. I will also separately submit a log file of the code execution.
+1. I have run the code from the start to finish. I will personally talk to Yoto if I have any questions. I will also separately submit my code script.
 
 2. Optional.
 
-3 (a). If we add Canada US border, you can see that the coefficient estimate is positive. Thus relative to the baseline border, this indicates that the border effect for Canada and US is thinner than other borders. But still, compared to general border effect, this is still not very large. Thus, while the border between Canada and US is thinner than other borders, the friction still matters.
+3 (a). If we add the Canada-US border, you can see that the coefficient estimate is positive. Thus, relative to the baseline border, this indicates that the border effect for Canada and the US is thinner than other borders. But still, compared to the general border effect, this is still not very large. Thus, while the border between Canada and the US is thinner than other borders, the friction still matters.
 
 \begin{table}[!ht]
 \centering
 \input{../tables/tableQ3_a.tex}
 \end{table}
 
-3 (b). In the case of symmetric removal of the border, you can see the gain from trade. This is especially large for Canada. While USA also has such gain, it is relatively smaller and consumer price actually increases.
+3 (b). In the case of symmetric removal of the border, you can see the gain from trade. This is especially large for Canada. While the USA also has such a gain, it is relatively smaller and consumer prices actually increase.
 
-3 (c). In asymmetric removal, Canada's GDP rise becomes much smaller. It also seem that gain from trade is more concentrated in producer side.
+3 (c). In asymmetric removal, Canada's GDP rise becomes much smaller. It also seems that the gain from trade is more concentrated on the producer side.
 
 Country | Cases | Change in Exports | Change in producer price | Change in consumer price | Change in GDP
 --- | --- | --- | --- | --- | ---
@@ -194,7 +197,7 @@ Mexico | Symmetric | -1.05 | 0.52 | 1.06 | -0.53
 Canada | Asymmetric | 73.27 | 30.73 | 6.55 | 22.69
 USA | Asymmetric | 26.81 | -1.37 | -2.29 | 0.94
 
-4 (a). Suppose Trump impose 60% tariff on all imports from China. The change in welfare is as follows:
+4 (a). Suppose Trump imposes a 60% tariff on all imports from China. The change in welfare is as follows:
 
 Country | Change in Exports | Change in producer price | Change in consumer price | Change in GDP
 --- | --- | --- | --- | --- | ---
@@ -203,7 +206,7 @@ China | -6.19 | -1.88 | -1.74 | -0.14
 TZA | 0.06 | 0.03 | -0.31 | 0.34 
 NPL | -0.35 | -0.30 | -0.81 | 0.52
 
-You can see that in terms of overall welfare, USA actually loses from the tariff. China also loses from the tariff, though not as much as USA. Tanzania and Nepal gain from the tariff. Perhaps it is due to change in exports and trade diversion effects of the tariff.
+You can see that in terms of overall welfare, the USA actually loses from the tariff. China also loses from the tariff, though not as much as the USA. Tanzania and Nepal gain from the tariff. Perhaps it is due to changes in exports and trade diversion effects of the tariff.
 
 4 (b). Now suppose China retaliates. Then the change in welfare is as follows:
 
@@ -214,18 +217,18 @@ China | -7.11 | -1.58 | -1.31 | -0.27
 TZA | 0.06 | 0.03 | -0.26 | 0.29
 NPL | -0.27 | -0.23 | -0.67 | 0.44
 
-In this case, USA and China both lose more due to the retaliation. Tanzania and Nepal still gain from the tariff, but the gain is smaller.
+In this case, the USA and China both lose more due to the retaliation. Tanzania and Nepal still gain from the tariff, but the gain is smaller.
 
 4 (c). Now suppose the world taxes US. Then the change in welfare is as follows:
 
 Country | Change in Exports | Change in producer price | Change in consumer price | Change in GDP
 --- | --- | --- | --- | --- | ---
-USA |  | 97.36 | -67.58 | -99.98 | 148,479.80
+USA | 48.18 | 97.36 | -67.58 | -99.98 | 148,479.80
 China | 49.08 | -64.05 | -99.98 | 156,450.20
 TZA | -99.00 | 36.16 | -99.76 | 58,922.45
 NPL | -99.20 | 31.02 | -51.02 | 168.53
 
-As this is situation where every world is taxing US, result gets bit confusing. But interesting it seems to lead to overall welfare gain for the world. 
+As this is a situation where every country in the world is taxing the US, the result gets a bit confusing. But interestingly, it seems to lead to an overall welfare gain for the world. 
 
 4 (d). Finally, let's do the domestic tariff case. Then the change in welfare is as follows:
 
@@ -236,8 +239,8 @@ China | -6.16 | -1.51 | -1.25 | -0.27
 TZA | -0.13 | -0.16 | 0.17 | -0.33
 NPL | -0.34 | -0.39 | -0.41 | 0.02
 
-You can see that many countries suffer from the domestic tariff. This is because the domestic tariff is a tax on domestic consumers and this will also propagate to other countries through trade diversion effects. Interestingly, some country like Nepal actually gain from the US's domestic tariff.
+You can see that many countries suffer from the domestic tariff. This is because the domestic tariff is a tax on domestic consumers and this will also propagate to other countries through trade diversion effects. Interestingly, some countries like Nepal actually gain from the US's domestic tariff.
 
-4 (e). For 60% tariff on China and possible retaliation from China, the estimates from the policy brief is pretty close to the results I got. For example, they expect about -0.19% to -0.12% change in real GDP which is pretty close to my number of -0.23% (though my code expects bigger loss for USA). For retaliation, policy brief expected about -0.43% to -0.21% while my code expects about -0.29% which is within the range. Thus the model seems to pretty good job in predicting the welfare effects of the tariff (though there are some differences in the magnitude). On the other hand, the case for universal tariff on US seems to be a bit off.
+4 (e). For the 60% tariff on China and possible retaliation from China, the estimates from the policy brief are pretty close to the results I got. For example, they expect about -0.19% to -0.12% change in real GDP, which is pretty close to my number of -0.23% (though my code expects a bigger loss for the USA). For retaliation, the policy brief expected about -0.43% to -0.21% while my code expects about -0.29%, which is within the range. Thus, the model seems to do a pretty good job in predicting the welfare effects of the tariff (though there are some differences in the magnitude). On the other hand, the case for a universal tariff on the US seems to be a bit off.
 
 5. Optional.
