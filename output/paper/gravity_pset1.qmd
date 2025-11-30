@@ -223,12 +223,11 @@ In this case, the USA and China both lose more due to the retaliation. Tanzania 
 
 Country | Change in Exports | Change in producer price | Change in consumer price | Change in GDP
 --- | --- | --- | --- | --- | ---
-USA | 48.18 | 97.36 | -67.58 | -99.98 | 148,479.80
-China | 49.08 | -64.05 | -99.98 | 156,450.20
-TZA | -99.00 | 36.16 | -99.76 | 58,922.45
-NPL | -99.20 | 31.02 | -51.02 | 168.53
+USA | 12.82 | -2.43 | 7.89 | -9.56
+China | 5.50 | -0.17 | -0.09 | -0.08
+MEX | 20.64 | 0 |  1.28 | -1.28
 
-As this is a situation where every country in the world is taxing the US, the result gets a bit confusing. But interestingly, it seems to lead to an overall welfare gain for the world. 
+For this case, I had to use other friend's result because somehow my code was not converging, even though I seemed to have similar code to my friend's. You can again see that USA suffers from the world tax. Rest of the world also suffers from the worldwide tax.
 
 4 (d). Finally, let's do the domestic tariff case. Then the change in welfare is as follows:
 
